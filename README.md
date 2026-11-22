@@ -30,7 +30,7 @@ stretch/
 You need:
 
 1. A laptop and charger
-2. A [GitHub account](https://github.com/signup)
+2. A [GitHub account](https://github.com/signup). In [Settings → Emails](https://github.com/settings/emails), tick **Keep my email addresses private**, so commits you make on github.com don't publish your email address.
 3. An [AWS account](https://aws.amazon.com/free/) you can sign in to. New accounts choose the **Free plan**.
 
 ## The main build
@@ -48,16 +48,16 @@ Tip: press `.` on your repo page to open a full editor in the browser.
 
 1. Sign in to the [AWS Amplify console](https://console.aws.amazon.com/amplify/apps).
 2. Choose **Create new app** (or **Deploy an app**) → **GitHub** → **Next**.
-3. Sign in to GitHub when asked and give Amplify access to your `portfolio` repo.
-4. Pick the `portfolio` repo and the `main` branch → **Next**.
-5. Amplify finds `amplify.yml` and fills in the build settings. Leave them as they are → **Next** → **Save and deploy**.
-6. Wait about a minute until every step is green, then open the URL ending in `amplifyapp.com`. Your site is live.
+3. A GitHub window pops up. Sign in if asked, install **AWS Amplify**, and under repository access choose **Only select repositories** → `portfolio`. If no window appears, your browser blocked the popup: allow popups for the AWS console, then click **Update GitHub permissions** on the Amplify page.
+4. Pick the `portfolio` repo and the `main` branch → **Next**. Repo not in the list? Click **Update GitHub permissions** and add it.
+5. Amplify finds `amplify.yml` and fills in the build settings (build output directory `site`). Leave them as they are → **Next** → **Save and deploy**.
+6. Wait 1–3 minutes until the `main` branch shows **Deployed**, then open the URL ending in `amplifyapp.com`. Your site is live.
 
 ### Part C: ship an update (10 min)
 
 1. Edit any line in `site/index.html` on GitHub and commit.
 2. Go back to Amplify. A new deploy starts by itself.
-3. Refresh your site after about a minute. You just used CI/CD: continuous integration and continuous delivery.
+3. When the new deploy shows **Deployed** (1–3 minutes; some take longer than others), refresh your site. You just used CI/CD: continuous integration and continuous delivery.
 
 ## Stretch goals
 
@@ -82,7 +82,8 @@ Tip: press `.` on your repo page to open a full editor in the browser.
 | Problem | Fix |
 | --- | --- |
 | Amplify shows a blank page or 404 | Check `amplify.yml` is in the repo root and `baseDirectory` is `site`. |
-| Amplify can't see my repo | GitHub → Settings → Applications → AWS Amplify → **Configure** → give it access to the repo. |
+| "Popup was blocked", or nothing happens after choosing GitHub | Allow popups for the AWS console (icon at the right of the address bar), then click **Update GitHub permissions** on the Amplify page. |
+| Amplify can't see my repo | Click **Update GitHub permissions** in the Amplify wizard, or GitHub → Settings → Applications → AWS Amplify → **Configure** → give it access to the repo. |
 | My change isn't showing | Wait for the Amplify deploy to finish, then hard-refresh (`Ctrl+Shift+R` / `Cmd+Shift+R`). |
 | Region confusion | Lambda and DynamoDB must be in the same Region. Check the menu at the top right of the console. |
 
